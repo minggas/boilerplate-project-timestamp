@@ -24,6 +24,17 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+//time API endpoint
+app.get("/api/timestamp/:date", function(req, res){
+  var date = Date.parse(req.params.date);
+  var natural = new Date(date).toLocaleString('en-GB',{year: 'numeric', month: 'long', day: 'numeric' });
+  if(date){
+    res.json({unix: date, natural: natural});
+  }else{
+    res.json({unix: null, natural: "Invalid Date"});
+  }  
+});
+
 
 
 // listen for requests :)
